@@ -7,7 +7,6 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 body { margin:0; font-family:sans-serif; background:#000; overflow-x:hidden; color:#f3f4f6; }
-
 .bubbles {
   position: fixed;
   width: 100%;
@@ -44,16 +43,15 @@ body { margin:0; font-family:sans-serif; background:#000; overflow-x:hidden; col
   75% { transform: translate(20px,-10px) scale(1.05); opacity: 0.4; }
   100% { transform: translate(0,0) scale(1); opacity: 0; }
 }
-
 .fade { opacity:0; transition:opacity 1s ease; }
 .fade.show { opacity:1; }
 
-#landing { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:2rem; }
-#landing h1 { font-size:4rem; font-weight:800; background:linear-gradient(to right,#fff,#060155); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-#landing h2 { margin-top:1rem; font-size:1.5rem; font-weight:700; color:#060155; -webkit-text-stroke:0.3px #fff; text-stroke:0.3px #fff; }
-#landing p { margin-top:1rem; max-width:600px; color:#d1d5db; }
-button,a { margin-top:1rem; transition:all 0.3s ease; padding:0.75rem 2rem; border:1px solid #fff; border-radius:8px; background:transparent; color:#fff; font-weight:700; text-decoration:none; display:inline-block; }
-button:hover,a:hover { background:#fff; color:#000; }
+.container { padding:4rem 1rem; max-width:1000px; margin:auto; }
+h1 { text-align:center; font-size:3rem; margin-bottom:2rem; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; }
+.grid img { width:100%; border-radius:0.5rem; transition: transform 0.3s ease; }
+.grid img:hover { transform:scale(1.05); }
+.backBtn { display:block; margin:2rem auto; text-align:center; }
 </style>
 </head>
 <body>
@@ -70,16 +68,14 @@ button:hover,a:hover { background:#fff; color:#000; }
   <div class="bubble"></div>
 </div>
 
-<!-- Landing Page -->
-<section id="landing" class="fade show">
-  <h1>#FUCKREII.</h1>
-  <h2>THIS IS WHERE ALL HER BULLSHIT BRAINFUCK CONTENT ACCOUNTS ARE AND STUPID IMAGES.</h2>
-  <p>CHECK THEM OUT BELOW.<br>
-  <div class="flex gap-4 mt-6">
-    <a href="cards.html">View Accounts</a>
-    <a href="gallery.html">Enter Gallery</a>
+<div class="container fade show">
+  <h1>NOTHING RN!!!</h1>
+  <div class="grid">
+    <img src="https://cdn.discordapp.com/attachments/1138196554180722843/1398017891802021888/giphy_13.gif?ex=68d397df&is=68d2465f&hm=cc66816f224cb05a59384c1a893d6e1eeeea733af8d8d3b4b3d207a2a39633e6&" alt="hi gu">
   </div>
-</section>
+
+  <a href="index.html" class="backBtn px-6 py-3 border border-white rounded-lg bg-transparent text-white font-semibold hover:bg-white hover:text-black">Back to Homepage</a>
+</div>
 
 </body>
 </html>

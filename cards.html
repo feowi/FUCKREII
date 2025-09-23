@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#FUCKREII</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body { margin:0; font-family:sans-serif; background:#000; color:#f3f4f6; }
+
+.bubbles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  overflow: hidden;
+  z-index: -2;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(10,25,70,0.3);
+  filter: blur(25px);
+  opacity: 0;
+  animation: drift 40s linear infinite;
+}
+
+/* Generate multiple bubbles with random sizes and positions */
+.bubble:nth-child(1) { width: 120px; height: 120px; left: 10%; top: 20%; animation-delay: 0s; }
+.bubble:nth-child(2) { width: 150px; height: 150px; left: 60%; top: 40%; animation-delay: 5s; }
+.bubble:nth-child(3) { width: 90px; height: 90px; left: 35%; top: 70%; animation-delay: 10s; }
+.bubble:nth-child(4) { width: 130px; height: 130px; left: 80%; top: 25%; animation-delay: 15s; }
+.bubble:nth-child(5) { width: 70px; height: 70px; left: 50%; top: 50%; animation-delay: 20s; }
+.bubble:nth-child(6) { width: 100px; height: 100px; left: 20%; top: 60%; animation-delay: 7s; }
+.bubble:nth-child(7) { width: 110px; height: 110px; left: 75%; top: 10%; animation-delay: 12s; }
+.bubble:nth-child(8) { width: 60px; height: 60px; left: 40%; top: 30%; animation-delay: 3s; }
+
+@keyframes drift {
+  0% { transform: translate(0,0) scale(1); opacity: 0; }
+  10% { opacity: 0.5; }
+  25% { transform: translate(30px,-20px) scale(1.1); opacity: 0.6; }
+  50% { transform: translate(-40px,30px) scale(1.2); opacity: 0.5; }
+  75% { transform: translate(20px,-10px) scale(1.05); opacity: 0.4; }
+  100% { transform: translate(0,0) scale(1); opacity: 0; }
+}
+
+
+
+.glass-card { backdrop-filter: blur(16px); background: rgba(255,255,255,0.1); border-radius:1rem; padding:1.5rem; margin-bottom:1.5rem; box-shadow:0 8px 32px rgba(0,0,0,0.3); transition: transform 0.3s ease; }
+.glass-card:hover { transform: scale(1.03); }
+.platform-icon { width:24px; height:24px; }
+a { transition: color 0.3s ease; } a:hover { color:#3B82F6; }
+.fade { opacity:0; transition:opacity 1s ease; }
+.fade.show { opacity:1; }
+.container { padding:4rem 1rem; max-width:800px; margin:auto; }
+button { transition:all 0.3s ease; margin-bottom:2rem; }
+.backBtn { display:block; margin:2rem auto; text-align:center; padding:0.75rem 2rem; border:1px solid #fff; border-radius:8px; background:transparent; color:#fff; font-weight:700; text-decoration:none; }
+.backBtn:hover { background:#fff; color:#000; }
+</style>
+</head>
+<body>
+
+<!-- Ambient Bubbles -->
+<div class="bubbles">
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+</div>
+
+<div class="container fade show">
+  <h1 class="text-4xl font-bold mb-8 text-center">#FUCKREII</h1>
+
+  <!-- TheRebootedLily -->
+<details class="glass-card mb-6">
+  <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">TheRebootedLily / RebootedLily</summary>
+  <ul class="mt-4 space-y-3">
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon"/>
+      <a href="https://www.youtube.com/@TheRebootedLily/featured">Primary Channel</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon"/>
+      <a href="https://www.youtube.com/c/Rebootedlily">Alternate Channel</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon"/>
+      <a href="#">CryptedLily</a>
+    </li>
+</ul>
+</details>
+
+<!-- Lallieh -->
+<details class="glass-card mb-6">
+  <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">Lallieh / ByLallie</summary>
+  <ul class="mt-4 space-y-3">
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon"/>
+      <a href="https://www.youtube.com/@Lallieh/posts">Community Posts</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" class="platform-icon"/>
+      <a href="https://www.tiktok.com/@bylallie">TikTok</a>
+    </li>
+  </ul>
+</details>
+
+<!-- LegitMadden -->
+<details class="glass-card mb-6">
+  <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">LegitMadden / Legit Madden</summary>
+  <ul class="mt-4 space-y-3">
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon"/>
+      <a href="https://www.youtube.com/@LegitMadden">Main Channel</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" class="platform-icon"/>
+      <a href="https://www.tiktok.com/@legitmaddenrblx">TikTok</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" class="platform-icon"/>
+      <a href="https://x.com/legitmaddenrblx">X (Twitter)</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" class="platform-icon"/>
+      <a href="https://www.roblox.com/users/1388182214/profile">Roblox Profile</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/carrd.svg" class="platform-icon"/>
+      <a href="https://legitmaddenmods.carrd.co/">Carrd</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/email.svg" class="platform-icon"/>
+      <a href="mailto:legitmadden@proton.me">Business Email</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" class="platform-icon"/>
+      <a href="https://discord.com/invite/kHBBdyEMDe">Discord Server</a>
+    </li>
+  </ul>
+</details>
+
+<!-- RebootedLeo -->
+<details class="glass-card mb-6">
+  <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">RebootedLeo</summary>
+  <ul class="mt-4 space-y-3">
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" class="platform-icon"/>
+      <a href="https://x.com/RebootedLeo">X (Twitter)</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" class="platform-icon"/>
+      <a href="https://www.roblox.com/users/3952655583/profile">Roblox Profile</a>
+    </li>
+  </ul>
+</details>
+
+<!-- RebootedPoppy -->
+<details class="glass-card mb-6">
+  <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">RebootedPoppy / CryptedPoppy</summary>
+  <ul class="mt-4 space-y-3">
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" class="platform-icon"/>
+      <a href="https://www.roblox.com/users/65217781/profile">Roblox Profile</a>
+    </li>
+  </ul>
+</details>
+
+<!-- RitaTheDiva -->
+<details class="glass-card mb-6">
+  <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">RitaTheDiva</summary>
+  <ul class="mt-4 space-y-3">
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon"/>      
+      <a href="https://www.youtube.com/@ritathediva">YouTube Channel</a>
+    </li>
+  </ul>
+</details>
+
+<!-- Dollbaconn -->
+<details class="glass-card mb-6">
+  <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">Dollbaconn</summary>
+  <ul class="mt-4 space-y-3">
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon"/>      
+      <a href="https://www.youtube.com/@DollBaconn/">YouTube Channel</a>
+    </li>
+  </ul>
+</details>
+
+<!-- DollBaconn -->
+<details class="glass-card mb-6">
+  <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">DollBaconn / DollieDeath</summary>
+  <ul class="mt-4 space-y-3">
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon"/>
+      <a href="https://www.youtube.com/@DollieDeath/videos">YouTube Videos</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/twitter.svg" class="platform-icon"/>
+      <a href="https://twitter.com/realdollbacon">Twitter</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" class="platform-icon"/>
+      <a href="https://www.tiktok.com/@cryingdollbacon">TikTok</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" class="platform-icon"/>
+      <a href="https://www.tiktok.com/@justdollie">TikTok 2</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" class="platform-icon"/>
+      <a href="https://www.tiktok.com/@llolaa_death">TikTok 3</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" class="platform-icon"/>
+      <a href="https://www.instagram.com/justdeathdollie0/">Instagram</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" class="platform-icon"/>
+      <a href="https://www.instagram.com/justdeathdollie/">Instagram 2</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" class="platform-icon"/>
+      <a href="https://www.roblox.com/users/1842909217/profile">Roblox Profile</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/email.svg" class="platform-icon"/>
+      <a href="mailto:shrimpxo@proton.me">Business Email</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/email.svg" class="platform-icon"/>
+      <a href="mailto:puffywa@proton.me">Business Email 2</a>
+    </li>
+  </ul>
+</details>
+
+<!-- CorruptedKai -->
+<details class="glass-card mb-6">
+  <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">CorruptedKai</summary>
+  <ul class="mt-4 space-y-3">
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/shapes.svg" class="platform-icon"/>
+      <a href="https://shapes.inc/corruptedkai">Bio Link</a>
+    </li>
+    <li class="flex items-center gap-3">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/email.svg" class="platform-icon"/>
+      <a href="mailto:corruptedkai@mail.shapes.inc">Business Email</a>
+    </li>
+  </ul>
+</details>
+
+  <!-- Back Button -->
+  <a href="index.html" class="backBtn">Back to Homepage</a>
+</div>
+
+</body>
+</html>
