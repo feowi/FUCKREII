@@ -15,7 +15,6 @@ body { margin:0; font-family:sans-serif; background:#000; overflow-x:hidden; col
   overflow: hidden;
   z-index: -2;
 }
-
 .bubble {
   position: absolute;
   border-radius: 50%;
@@ -24,8 +23,7 @@ body { margin:0; font-family:sans-serif; background:#000; overflow-x:hidden; col
   opacity: 0;
   animation: drift 40s linear infinite;
 }
-
-/* Generate multiple bubbles with random sizes and positions */
+/* Bubbles animation */
 .bubble:nth-child(1) { width: 120px; height: 120px; left: 10%; top: 20%; animation-delay: 0s; }
 .bubble:nth-child(2) { width: 150px; height: 150px; left: 60%; top: 40%; animation-delay: 5s; }
 .bubble:nth-child(3) { width: 90px; height: 90px; left: 35%; top: 70%; animation-delay: 10s; }
@@ -34,7 +32,6 @@ body { margin:0; font-family:sans-serif; background:#000; overflow-x:hidden; col
 .bubble:nth-child(6) { width: 100px; height: 100px; left: 20%; top: 60%; animation-delay: 7s; }
 .bubble:nth-child(7) { width: 110px; height: 110px; left: 75%; top: 10%; animation-delay: 12s; }
 .bubble:nth-child(8) { width: 60px; height: 60px; left: 40%; top: 30%; animation-delay: 3s; }
-
 @keyframes drift {
   0% { transform: translate(0,0) scale(1); opacity: 0; }
   10% { opacity: 0.5; }
@@ -49,7 +46,7 @@ body { margin:0; font-family:sans-serif; background:#000; overflow-x:hidden; col
 .container { padding:4rem 1rem; max-width:1000px; margin:auto; }
 h1 { text-align:center; font-size:3rem; margin-bottom:2rem; }
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; }
-.grid img { width:100%; border-radius:0.5rem; transition: transform 0.3s ease; }
+.grid img { width:100%; height:auto; border-radius:0.5rem; transition: transform 0.3s ease; object-fit:contain; }
 .grid img:hover { transform:scale(1.05); }
 .backBtn { display:block; margin:2rem auto; text-align:center; }
 </style>
@@ -58,22 +55,16 @@ h1 { text-align:center; font-size:3rem; margin-bottom:2rem; }
 
 <!-- Ambient Bubbles -->
 <div class="bubbles">
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
 </div>
 
 <div class="container fade show"> 
-  <h1>NOTHING RN!!!</h1>
+  <h1>silly images imagine saying the n word cuz u cant run a discord server/bubbablox</h1>
   <div class="grid">
-<img src="https://cdn.discordapp.com/attachments/1138196554180722843/1398017891802021888/giphy_13.gif?ex=68d397df&is=68d2465f&hm=cc66816f224cb05a59384c1a893d6e1eeeea733af8d8d3b4b3d207a2a39633e6&" alt="hi gu" style="width:150px; height:auto;">
-<img src="https://bready.lol/public/rest/FUCKREII.gif" alt="reii the rat" style="width:955px; height:auto;">
-<img src="https://media.discordapp.net/attachments/1368038505795555378/1420140293608574997/image.png?ex=68d45036&is=68d2feb6&hm=41be0b4ec50d82e7282e7e48c29ed6121d4c191131510e0950dc9fff152611b1&=&width=955&height=215" alt="hi gu" style="width:955px; height:auto;">
+    <img src="https://cdn.discordapp.com/attachments/1138196554180722843/1398017891802021888/giphy_13.gif" alt="hi gu">
+    <img src="https://bready.lol/public/rest/FUCKREII.gif" alt="reii the rat">
+    <img src="https://media.discordapp.net/attachments/1368038505795555378/1420140293608574997/image.png" alt="hi gu">
   </div>
 
   <a href="index.html" class="backBtn px-6 py-3 border border-white rounded-lg bg-transparent text-white font-semibold hover:bg-white hover:text-black">Back to Homepage</a>
