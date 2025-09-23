@@ -274,13 +274,14 @@ a:hover {
 
 <script>
 window.addEventListener('load', () => {
+  // Fade out loading screen
   const loading = document.getElementById('loading');
   loading.style.opacity = '0';
   setTimeout(() => loading.style.display = 'none', 600);
 
+  // Animate fade-in for main content
   const mainContent = document.querySelector('.fade-in');
   mainContent.classList.add('show');
-});
 </script>
 </body>
 </html>
