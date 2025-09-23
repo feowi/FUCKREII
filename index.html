@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#FUCKREII</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* Loading screen */
+#loading {
+  position: fixed; top:0; left:0;
+  width: 100%; height: 100%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+#loading img {
+  width: 150px;
+  height: auto;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 2s forwards;
+}
+@keyframes fadeUp {
+  0% {opacity: 0; transform: translateY(20px);}
+  50% {opacity: 1; transform: translateY(0);}
+  100% {opacity: 1; transform: translateY(-30px);}
+}
+
+/* Smooth fade-in */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Glass card */
+.glass-card {
+  @apply backdrop-blur-lg bg-white/20 rounded-2xl p-6 shadow-lg transition-all duration-500;
+}
+.glass-card:hover {
+  @apply scale-105 shadow-2xl;
+}
+
+/* Smooth details */
+details > ul {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.6s ease, opacity 0.6s ease;
+}
+details[open] > ul {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+/* List item animations */
+details ul li {
+  transform: translateY(10px);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+details[open] ul li {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Platform icon */
+.platform-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Link hover animations */
+a {
+  transition: all 0.3s ease;
+  position: relative;
+}
+a:hover {
+  color: #1D4ED8; /* Tailwind blue-700 */
+  transform: translateX(5px);
+}
+</style>
+</head>
+<body class="bg-gradient-to-br from-gray-100 to-white font-sans overflow-x-hidden">
+
+<!-- Loading Screen -->
+<div id="loading">
+  <img src="logo.png" alt="Logo"> <!-- Replace with your PNG -->
+</div>
+
+<div class="container mx-auto py-12 px-4 fade-in">
+  <h1 class="text-4xl font-bold mb-12 text-center text-gray-800">#FUCKREII</h1>
+  <h1 class="text-4xl font-bold mb-12 text-center text-gray-800">the website design will change in the future</h1>
+
+  <!-- TheRebootedLily -->
+  <details class="glass-card mb-6">
+    <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">TheRebootedLily / RebootedLily</summary>
+    <ul class="mt-4 space-y-3">
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/@TheRebootedLily/featured">Primary Channel</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/c/Rebootedlily">Alternate Channel</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="#">CryptedLily</a>
+      </li>
+    </ul>
+  </details>
+
+  <!-- Lallieh -->
+  <details class="glass-card mb-6">
+    <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">Lallieh / ByLallie</summary>
+    <ul class="mt-4 space-y-3">
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/@Lallieh">Official Channel</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/@Lallieh/posts">Community Posts</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" class="platform-icon" style="fill:#000000"/>
+        <a href="https://www.tiktok.com/@bylallie">TikTok</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.roblox.com/users/3452852993/profile">Roblox Profile</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linktree.svg" class="platform-icon" style="fill:#06C755"/>
+        <a href="https://linktr.ee/lallieh">Linktree</a>
+      </li>
+    </ul>
+  </details>
+
+  <!-- LegitMadden -->
+  <details class="glass-card mb-6">
+    <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">LegitMadden / Legit Madden</summary>
+    <ul class="mt-4 space-y-3">
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/@LegitMadden">Main Channel</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/@LegitMadden/posts">Community Posts</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/channel/UCd6Hw-jrBahMivihhcW4x8g">Clips Channel</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" class="platform-icon" style="fill:#1DA1F2"/>
+        <a href="https://x.com/legitmaddenrblx">X (Twitter)</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" class="platform-icon" style="fill:#E1306C"/>
+        <a href="https://www.instagram.com/legitmaddenrblx">Instagram</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tiktok.svg" class="platform-icon" style="fill:#000000"/>
+        <a href="https://www.tiktok.com/@legitmaddenrblx">TikTok</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.roblox.com/users/1388182214/profile">Roblox Profile</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.roblox.com/groups/33970686/Maddens-Adventure">Group</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/rolimons.svg" class="platform-icon" style="fill:#00AEEF"/>
+        <a href="https://www.rolimons.com/player/1388182214">Rolimon's Page</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/carrd.svg" class="platform-icon" style="fill:#000000"/>
+        <a href="https://legitmaddenmods.carrd.co/">Carrd</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/discord.svg" class="platform-icon" style="fill:#5865F2"/>
+        <a href="https://discord.com/invite/kHBBdyEMDe">Discord Server</a>
+      </li>
+    </ul>
+  </details>
+
+  <!-- RebootedLeo -->
+  <details class="glass-card mb-6">
+    <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">RebootedLeo</summary>
+    <ul class="mt-4 space-y-3">
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/@RebootedLeo">Main Channel</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/channel/UCHKm3zphf4ZtI-CVMWPpnHQ">Alternate Channel</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" class="platform-icon" style="fill:#1DA1F2"/>
+        <a href="https://x.com/RebootedLeo">X (Twitter)</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linktree.svg" class="platform-icon" style="fill:#06C755"/>
+        <a href="https://linktr.ee/leosreturn">Linktree</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.roblox.com/users/2681394973/profile">Roblox Profile</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/shapes.svg" class="platform-icon" style="fill:#FF66CC"/>
+        <a href="https://shapes.inc/corruptedkai">Shapes.inc Profile</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/email.svg" class="platform-icon" style="fill:#D44638"/>
+        <a href="mailto:corruptedkai@mail.shapes.inc">Business Email</a>
+      </li>
+    </ul>
+  </details>
+
+  <!-- RebootedPoppy -->
+  <details class="glass-card mb-6">
+    <summary class="text-xl font-semibold cursor-pointer hover:text-blue-500">RebootedPoppy / CryptedPoppy</summary>
+    <ul class="mt-4 space-y-3">
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/c/rebootedpoppy">Main Channel</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/@RebootedPoppy/shorts">Shorts Channel</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/channel/UCc9ELAiH-fPUj8SUHLuDZCw">Alternate Channel</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.youtube.com/@cryptedpoppy8139">CryptedPoppy Channel</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.roblox.com/users/65217781/profile">Roblox Profile</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/rolimons.svg" class="platform-icon" style="fill:#00AEEF"/>
+        <a href="https://www.rolimons.com/player/65217781">Rolimon's Page</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.roblox.com/games/6020294522/Poppy-exe">Poppy.exe Game</a>
+      </li>
+      <li class="flex items-center gap-3">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/roblox.svg" class="platform-icon" style="fill:#FF0000"/>
+        <a href="https://www.rolimons.com/group/14089885">CryptedPoppy Group</a>
+      </li>
+    </ul>
+  </details>
+
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  const loading = document.getElementById('loading');
+  loading.style.opacity = '0';
+  setTimeout(() => loading.style.display = 'none', 600);
+
+  const mainContent = document.querySelector('.fade-in');
+  mainContent.classList.add('show');
+});
+</script>
+</body>
+</html>
