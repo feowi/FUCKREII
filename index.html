@@ -16,13 +16,20 @@
   align-items: center;
   z-index: 50;
 }
+
 #loading img {
   width: 150px;
   height: auto;
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeUp 2s forwards;
+  transition: opacity 1.5s ease, transform 1.5s ease;
 }
+
+#loading.show img {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @keyframes fadeUp {
   0% {opacity: 0; transform: translateY(20px);}
   50% {opacity: 1; transform: translateY(0);}
@@ -274,15 +281,21 @@ a:hover {
 
 <script>
 window.addEventListener('load', () => {
-  // Fade out loading screen
   const loading = document.getElementById('loading');
-  loading.style.opacity = '0';
-  setTimeout(() => loading.style.display = 'none', 600);
-
-  // Animate fade-in for main content
-  const mainContent = document.querySelector('.fade-in');
-  mainContent.classList.add('show');
-  });
+  
+  // Trigger smooth fade-in of the logo
+  loading.classList.add('show');
+  
+  // Fade out loading screen after logo animation
+  setTimeout(() => {
+    loading.style.opacity = '0';
+    setTimeout(() => loading.style.display = 'none', 600);
+    
+    // Fade in main content
+    const mainContent = document.querySelector('.fade-in');
+    mainContent.classList.add('show');
+  }, 1500); // match the transition duration
+});
 </script>
 </body>
 </html>
