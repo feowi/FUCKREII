@@ -260,5 +260,14 @@ button { transition:all 0.3s ease; margin-bottom:2rem; }
   <a href="index.html" class="backBtn">Back to Home</a>
 </div>
 
+<footer class="text-center py-4 bg-gray-900 text-white">
+  &copy; <span id="year"></span> LEVI & TALK. #FUCKREII
+</footer>
+
+<script>
+  // Auto-update year
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
