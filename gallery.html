@@ -43,11 +43,8 @@ body { margin:0; font-family:sans-serif; background:#000; overflow-x:hidden; col
 .fade { opacity:0; transition:opacity 1s ease; }
 .fade.show { opacity:1; }
 
-.container { padding:4rem 1rem; max-width:1000px; margin:auto; }
+.container { padding:4rem 1rem; max-width:1200px; margin:auto; }
 h1 { text-align:center; font-size:3rem; margin-bottom:2rem; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; }
-.grid img { width:100%; height:auto; border-radius:0.5rem; transition: transform 0.3s ease; object-fit:contain; }
-.grid img:hover { transform:scale(1.05); }
 .backBtn { display:block; margin:2rem auto; text-align:center; }
 </style>
 </head>
@@ -61,24 +58,27 @@ h1 { text-align:center; font-size:3rem; margin-bottom:2rem; }
 
 <div class="container fade show"> 
   <h1>silly images imagine saying the n word cuz u cant run a discord server/bubbablox</h1>
-  <div class="grid">
-    <img src="https://media.discordapp.net/attachments/1138196554180722843/1398017891802021888/giphy_13.gif?ex=68d4409f&is=68d2ef1f&hm=8f3c47b5cf3e60334f8db1fef258596ac0f154c60106f0756336864bf85df21b&=&width=563&height=563" alt="hi gu">
-    <img src="https://bready.lol/public/rest/FUCKREII.gif" alt="reii the rat">
-    <img src="https://media.discordapp.net/attachments/1368038505795555378/1420140293608574997/image.png?ex=68d45036&is=68d2feb6&hm=41be0b4ec50d82e7282e7e48c29ed6121d4c191131510e0950dc9fff152611b1&=&width=955&height=215" alt="hi gu">
-    <img src="https://media.discordapp.net/attachments/1368038505795555378/1420107937212272661/image.png?ex=68d43214&is=68d2e094&hm=3d306aae3bb0b8f8c918df49f03e790ca876b9314d91ae326e467c96db7d8035&=&width=1044&height=618" alt="uhm">
-    <img src="img/1.png" alt="uhm">
-    <img src="img/2.png" alt="uhm">
-    <img src="img/3.png" alt="uhm">
-    <img src="img/4.png" alt="uhm">
-    <img src="img/5.png" alt="uhm">
-    <img src="img/6.png" alt="uhm">
-    <img src="img/7.png" alt="uhm">
-    <img src="img/8.gif" alt="uhm">
-    <img src="img/9.png" alt="uhm">
 
-<section></section>
+  <!-- Masonry Grid -->
+  <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+    <img src="https://media.discordapp.net/attachments/1138196554180722843/1398017891802021888/giphy_13.gif" alt="hi gu" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+    <img src="https://bready.lol/public/rest/FUCKREII.gif" alt="reii the rat" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+    <img src="https://media.discordapp.net/attachments/1368038505795555378/1420140293608574997/image.png" alt="hi gu" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+    <img src="https://media.discordapp.net/attachments/1368038505795555378/1420107937212272661/image.png" alt="uhm" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+    <img src="img/1.png" alt="uhm" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+    <img src="img/2.png" alt="uhm" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+    <img src="img/3.png" alt="uhm" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+    <img src="img/4.png" alt="uhm" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+    <img src="img/5.png" alt="uhm" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+    <img src="img/6.png" alt="uhm" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+    <img src="img/7.png" alt="uhm" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+    <img src="img/8.gif" alt="uhm" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+    <img src="img/9.png" alt="uhm" class="rounded-lg w-full mb-4 hover:scale-105 transition">
+  </div>
 
-  <a href="index.html" class="backBtn px-6 py-3 border border-white rounded-lg bg-transparent text-white font-semibold hover:bg-white hover:text-black">Back to Homepage</a>
+  <a href="index.html" class="backBtn px-6 py-3 border border-white rounded-lg bg-transparent text-white font-semibold hover:bg-white hover:text-black mt-8 block text-center">
+    Back to Homepage
+  </a>
 </div>
 
 <footer class="fixed bottom-0 left-0 w-full text-center py-3 bg-transparent text-white">
