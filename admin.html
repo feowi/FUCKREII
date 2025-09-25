@@ -51,12 +51,10 @@ onAuthStateChanged(auth, (user) => {
     statusBox.innerText = `✅ Logged in as ${currentUserName}`;
     loginForm.style.display = "none";
     announceForm.style.display = "block";
-    messagesContainer.style.display = "flex"; // show flex for top-center alignment
   } else {
     statusBox.innerText = "❌ Not logged in";
     loginForm.style.display = "block";
     announceForm.style.display = "none";
-    messagesContainer.style.display = "none";
   }
 });
 
@@ -120,6 +118,7 @@ onChildAdded(annRef, (snapshot) => {
     }
   };
 
+  // Append to container at the top (newest first)
   messagesContainer.prepend(card);
 });
 </script>
@@ -161,17 +160,13 @@ button {
 button:hover { background: #0056b3; }
 #status { text-align:center; font-weight:bold; margin-bottom:10px; }
 
-/* Announcements top center */
+/* Announcements below buttons */
 #messages-container {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-width: 90%;
-  z-index: 9999;
+  align-items: stretch;
+  margin-top: 15px;
+  width: 100%;
 }
 
 .message-card {
@@ -180,8 +175,6 @@ button:hover { background: #0056b3; }
   border-radius: 8px;
   margin-bottom: 8px;
   word-break: break-word;
-  min-width: 250px;
-  max-width: 400px;
   text-align: center;
 }
 .message-card img.msg-image {
@@ -217,9 +210,10 @@ button:hover { background: #0056b3; }
     <input type="file" id="image-file" accept="image/*">
     <button onclick="postAnnouncement()">Send Announcement</button>
     <button onclick="logout()" style="background:#dc3545; margin-top:5px;">Logout</button>
+
+    <!-- Messages appear here under buttons -->
+    <div id="messages-container"></div>
   </div>
 </div>
-
-<div id="messages-container"></div>
 </body>
 </html>
