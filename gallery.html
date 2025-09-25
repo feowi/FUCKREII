@@ -46,6 +46,34 @@ body { margin:0; font-family:sans-serif; background:#000; overflow-x:hidden; col
 .container { padding:4rem 1rem; max-width:1200px; margin:auto; }
 h1 { text-align:center; font-size:3rem; margin-bottom:2rem; }
 .backBtn { display:block; margin:2rem auto; text-align:center; }
+
+/* Modal styles */
+#imageModal {
+  display: none;
+  position: fixed;
+  z-index: 50;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  align-items: center;
+  justify-content: center;
+}
+#imageModal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+#imageModal .closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -86,6 +114,12 @@ h1 { text-align:center; font-size:3rem; margin-bottom:2rem; }
   </a>
 </div>
 
+<!-- Modal for images -->
+<div id="imageModal" class="flex">
+  <span class="closeBtn">&times;</span>
+  <img id="modalImage" src="" alt="Expanded Image">
+</div>
+
 <footer class="fixed bottom-0 left-0 w-full text-center py-3 bg-transparent text-white">
   &copy; <span id="year"></span> LEVI & TALK. #FUCKREII
 </footer>
@@ -93,6 +127,28 @@ h1 { text-align:center; font-size:3rem; margin-bottom:2rem; }
 <script>
   // Auto-update year
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Modal functionality
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  const closeBtn = document.querySelector(".closeBtn");
+
+  document.querySelectorAll("img").forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "flex";
+      modalImg.src = img.src;
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
 </script>
 
 </body>
