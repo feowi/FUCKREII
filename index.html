@@ -94,7 +94,7 @@ button:hover,a:hover { background:#fff; color:#000; }
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
 
-// --- Firebase config ---
+// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyC0jml1JcAoJziIB5iA-Ur7H3XpJdGhU44",
   authDomain: "fuckreii.firebaseapp.com",
@@ -106,22 +106,22 @@ const firebaseConfig = {
   measurementId: "G-C72NKH2MYQ"
 };
 
-// --- Initialize Firebase ---
+// Init Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// --- Create a container for notifications ---
+// Create a container for popups
 let container = document.getElementById("announcement-container");
 if (!container) {
   container = document.createElement("div");
   container.id = "announcement-container";
   Object.assign(container.style, {
     position: "fixed",
-    top: "50%",
+    top: "20px",
     left: "50%",
-    transform: "translate(-50%, -50%)",
+    transform: "translateX(-50%)",
     display: "flex",
-    flexDirection: "column-reverse",
+    flexDirection: "column",
     alignItems: "center",
     gap: "10px",
     pointerEvents: "none",
@@ -130,20 +130,23 @@ if (!container) {
   document.body.appendChild(container);
 }
 
-// --- Listen for new announcements ---
+// Listen for new announcements
 const annRef = ref(db, "announcements");
-
 onChildAdded(annRef, (snapshot) => {
   const data = snapshot.val();
-  if (!data || !data.message) return;
+  if (!data || (!data.message && !data.image)) return;
 
   const popup = document.createElement("div");
-  popup.innerText = "📢 " + data.message;
-  
+  popup.innerHTML = `
+    <strong>${data.user || "Admin"}</strong>: ${data.message || ""}
+    ${data.image ? `<img src="${data.image}" style="max-width:150px;margin-top:5px;border-radius:5px;">` : ""}
+  `;
+
   Object.assign(popup.style, {
+    background: "#222",
     color: "#fff",
-    fontSize: "20px",
-    fontFamily: "Arial, sans-serif",
+    padding: "10px 15px",
+    borderRadius: "8px",
     textAlign: "center",
     opacity: 0,
     transform: "translateY(20px)",
@@ -152,13 +155,11 @@ onChildAdded(annRef, (snapshot) => {
 
   container.appendChild(popup);
 
-  // Animate in
   requestAnimationFrame(() => {
     popup.style.opacity = 1;
     popup.style.transform = "translateY(0)";
   });
 
-  // Animate out after 4 seconds
   setTimeout(() => {
     popup.style.opacity = 0;
     popup.style.transform = "translateY(-20px)";

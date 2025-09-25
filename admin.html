@@ -9,7 +9,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-analytics.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
-import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+import { getDatabase, ref, push, onChildAdded, remove } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
 import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-storage.js";
 
 // Firebase Config
@@ -35,7 +35,6 @@ const storage = getStorage(app);
 const userNames = {
   "admin@example.com": "Admin",
   "other@example.com": "Mod",
-  // Add more emails and usernames here
 };
 
 // DOM Elements
@@ -45,7 +44,6 @@ const statusBox = document.getElementById("status");
 const messagesContainer = document.getElementById("messages-container");
 const fileInput = document.getElementById("image-file");
 
-// Auth State Listener
 let currentUserName = "";
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -53,7 +51,7 @@ onAuthStateChanged(auth, (user) => {
     statusBox.innerText = `✅ Logged in as ${currentUserName}`;
     loginForm.style.display = "none";
     announceForm.style.display = "block";
-    messagesContainer.style.display = "block";
+    messagesContainer.style.display = "flex"; // show flex for top-center alignment
   } else {
     statusBox.innerText = "❌ Not logged in";
     loginForm.style.display = "block";
@@ -80,7 +78,6 @@ window.postAnnouncement = async function() {
   if (!msg.trim() && !file) return alert("⚠️ Enter a message or choose an image!");
 
   let imageUrl = null;
-
   if (file) {
     const storageRef = sRef(storage, `announcements/${Date.now()}_${file.name}`);
     await uploadBytes(storageRef, file);
@@ -99,7 +96,7 @@ window.postAnnouncement = async function() {
   } catch (error) { alert("Error: " + error.message); }
 };
 
-// Load past announcements
+// Load announcements
 const annRef = ref(db, "announcements");
 onChildAdded(annRef, (snapshot) => {
   const data = snapshot.val();
@@ -111,7 +108,18 @@ onChildAdded(annRef, (snapshot) => {
     <strong>${data.user}</strong> - <em>${new Date(data.timestamp).toLocaleString()}</em>
     <p>${data.message || ""}</p>
     ${data.image ? `<img src="${data.image}" alt="Image" class="msg-image">` : ""}
+    <button class="delete-btn">Delete</button>
   `;
+  // Delete announcement
+  card.querySelector(".delete-btn").onclick = async () => {
+    try {
+      await remove(ref(db, `announcements/${snapshot.key}`));
+      card.remove();
+    } catch (err) {
+      alert("Failed to delete: " + err.message);
+    }
+  };
+
   messagesContainer.prepend(card);
 });
 </script>
@@ -120,10 +128,6 @@ onChildAdded(annRef, (snapshot) => {
 body {
   font-family: Arial, sans-serif;
   background: #1a1a1a;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
   margin: 0;
   padding: 20px;
   color: #fff;
@@ -134,6 +138,7 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.4);
   width: 400px;
+  margin: 0 auto;
 }
 h2 { text-align: center; margin-top:0; }
 input, button, textarea {
@@ -155,24 +160,45 @@ button {
 }
 button:hover { background: #0056b3; }
 #status { text-align:center; font-weight:bold; margin-bottom:10px; }
+
+/* Announcements top center */
+#messages-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+  z-index: 9999;
+}
+
 .message-card {
   background: #333;
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 8px;
   word-break: break-word;
+  min-width: 250px;
+  max-width: 400px;
+  text-align: center;
 }
 .message-card img.msg-image {
   max-width: 100%;
   margin-top: 5px;
   border-radius: 5px;
 }
-#messages-container {
-  max-height: 300px;
-  overflow-y: auto;
-  margin-top: 10px;
-  display: none;
+.delete-btn {
+  margin-top: 5px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 5px;
+  background: #dc3545;
+  color: #fff;
+  cursor: pointer;
 }
+.delete-btn:hover { background: #a71d2a; }
 </style>
 </head>
 <body>
@@ -191,8 +217,9 @@ button:hover { background: #0056b3; }
     <input type="file" id="image-file" accept="image/*">
     <button onclick="postAnnouncement()">Send Announcement</button>
     <button onclick="logout()" style="background:#dc3545; margin-top:5px;">Logout</button>
-    <div id="messages-container"></div>
   </div>
 </div>
+
+<div id="messages-container"></div>
 </body>
 </html>
