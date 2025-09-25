@@ -11,6 +11,7 @@
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-analytics.js";
     import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
     import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+    import { push } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
 
     // --- Your Firebase Config ---
     const firebaseConfig = {
@@ -64,22 +65,27 @@
       await signOut(auth);
     };
 
-    // --- Post Announcement ---
-    window.postAnnouncement = async function() {
-      const msg = document.getElementById("message").value;
-      if (!msg.trim()) return alert("⚠️ Message cannot be empty!");
 
-      const user = auth.currentUser;
-      if (!user) return alert("⚠️ You are not logged in!");
+window.postAnnouncement = async function() {
+  const msg = document.getElementById("message").value;
+  if (!msg.trim()) return alert("⚠️ Message cannot be empty!");
 
-      try {
-        await set(ref(db, "announcement"), msg);
-        alert("📢 Announcement sent!");
-        document.getElementById("message").value = "";
-      } catch (error) {
-        alert("Error: " + error.message);
-      }
-    };
+  const user = auth.currentUser;
+  if (!user) return alert("⚠️ You are not logged in!");
+
+  try {
+    await push(ref(db, "announcements"), {
+      message: msg,
+      user: user.email,
+      timestamp: Date.now()
+    });
+    alert("📢 Announcement sent!");
+    document.getElementById("message").value = "";
+  } catch (error) {
+    alert("Error: " + error.message);
+  }
+};
+
   </script>
 
   <style>
