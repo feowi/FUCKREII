@@ -271,9 +271,9 @@ button { transition:all 0.3s ease; margin-bottom:2rem; }
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+import { getDatabase, ref, onChildAdded, onChildRemoved } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
 
-// --- Firebase config ---
+// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyC0jml1JcAoJziIB5iA-Ur7H3XpJdGhU44",
   authDomain: "fuckreii.firebaseapp.com",
@@ -285,11 +285,11 @@ const firebaseConfig = {
   measurementId: "G-C72NKH2MYQ"
 };
 
-// --- Initialize Firebase ---
+// Init Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// --- Create a container for notifications ---
+// Create announcement container if not exists
 let container = document.getElementById("announcement-container");
 if (!container) {
   container = document.createElement("div");
@@ -309,9 +309,11 @@ if (!container) {
   document.body.appendChild(container);
 }
 
-// --- Listen for new announcements ---
-const annRef = ref(db, "announcements");
+// Track popups by Firebase key
+const popupsMap = {};
 
+// Listen for new announcements
+const annRef = ref(db, "announcements");
 onChildAdded(annRef, (snapshot) => {
   const data = snapshot.val();
   if (!data || !data.message) return;
@@ -330,6 +332,7 @@ onChildAdded(annRef, (snapshot) => {
   });
 
   container.appendChild(popup);
+  popupsMap[snapshot.key] = popup;
 
   // Animate in
   requestAnimationFrame(() => {
@@ -337,15 +340,26 @@ onChildAdded(annRef, (snapshot) => {
     popup.style.transform = "translateY(0)";
   });
 
-  // Animate out after 4 seconds
+  // Auto-hide after 4s
   setTimeout(() => {
-    popup.style.opacity = 0;
-    popup.style.transform = "translateY(-20px)";
-    setTimeout(() => popup.remove(), 500);
+    if (popup.parentNode) {
+      popup.style.opacity = 0;
+      popup.style.transform = "translateY(-20px)";
+      setTimeout(() => popup.remove(), 500);
+      delete popupsMap[snapshot.key];
+    }
   }, 4000);
 });
-</script>
 
+// Listen for deleted announcements
+onChildRemoved(annRef, (snapshot) => {
+  const popup = popupsMap[snapshot.key];
+  if (popup && popup.parentNode) {
+    popup.remove();
+    delete popupsMap[snapshot.key];
+  }
+});
+</script>
 
 </body>
 </html>

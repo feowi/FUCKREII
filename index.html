@@ -92,7 +92,7 @@ button:hover,a:hover { background:#fff; color:#000; }
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+import { getDatabase, ref, onChildAdded, onChildRemoved } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
 
 // Firebase Config
 const firebaseConfig = {
@@ -110,18 +110,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// Create a container for popups
+// Create announcement container if not exists
 let container = document.getElementById("announcement-container");
 if (!container) {
   container = document.createElement("div");
   container.id = "announcement-container";
   Object.assign(container.style, {
     position: "fixed",
-    top: "20px",
+    top: "50%",
     left: "50%",
-    transform: "translateX(-50%)",
+    transform: "translate(-50%, -50%)",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "column-reverse",
     alignItems: "center",
     gap: "10px",
     pointerEvents: "none",
@@ -130,23 +130,22 @@ if (!container) {
   document.body.appendChild(container);
 }
 
+// Track popups by Firebase key
+const popupsMap = {};
+
 // Listen for new announcements
 const annRef = ref(db, "announcements");
 onChildAdded(annRef, (snapshot) => {
   const data = snapshot.val();
-  if (!data || (!data.message && !data.image)) return;
+  if (!data || !data.message) return;
 
   const popup = document.createElement("div");
-  popup.innerHTML = `
-    <strong>${data.user || "Admin"}</strong>: ${data.message || ""}
-    ${data.image ? `<img src="${data.image}" style="max-width:150px;margin-top:5px;border-radius:5px;">` : ""}
-  `;
-
+  popup.innerText = "📢 " + data.message;
+  
   Object.assign(popup.style, {
-    background: "#222",
     color: "#fff",
-    padding: "10px 15px",
-    borderRadius: "8px",
+    fontSize: "20px",
+    fontFamily: "Arial, sans-serif",
     textAlign: "center",
     opacity: 0,
     transform: "translateY(20px)",
@@ -154,17 +153,32 @@ onChildAdded(annRef, (snapshot) => {
   });
 
   container.appendChild(popup);
+  popupsMap[snapshot.key] = popup;
 
+  // Animate in
   requestAnimationFrame(() => {
     popup.style.opacity = 1;
     popup.style.transform = "translateY(0)";
   });
 
+  // Auto-hide after 4s
   setTimeout(() => {
-    popup.style.opacity = 0;
-    popup.style.transform = "translateY(-20px)";
-    setTimeout(() => popup.remove(), 500);
+    if (popup.parentNode) {
+      popup.style.opacity = 0;
+      popup.style.transform = "translateY(-20px)";
+      setTimeout(() => popup.remove(), 500);
+      delete popupsMap[snapshot.key];
+    }
   }, 4000);
+});
+
+// Listen for deleted announcements
+onChildRemoved(annRef, (snapshot) => {
+  const popup = popupsMap[snapshot.key];
+  if (popup && popup.parentNode) {
+    popup.remove();
+    delete popupsMap[snapshot.key];
+  }
 });
 </script>
 
