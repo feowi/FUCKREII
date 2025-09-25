@@ -151,5 +151,55 @@ h1 { text-align:center; font-size:3rem; margin-bottom:2rem; }
   });
 </script>
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+
+// --- Firebase config (same as admin panel) ---
+const firebaseConfig = {
+  apiKey: "AIzaSyC0jml1JcAoJziIB5iA-Ur7H3XpJdGhU44",
+  authDomain: "fuckreii.firebaseapp.com",
+  databaseURL: "https://fuckreii-default-rtdb.firebaseio.com",
+  projectId: "fuckreii",
+  storageBucket: "fuckreii.firebasestorage.app",
+  messagingSenderId: "206715883407",
+  appId: "1:206715883407:web:420200082c73c3134d45fa",
+  measurementId: "G-C72NKH2MYQ"
+};
+
+// --- Initialize Firebase ---
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// --- Listen for new announcements ---
+const annRef = ref(db, "announcements");
+
+// onChildAdded triggers for every new announcement
+onChildAdded(annRef, (snapshot) => {
+  const data = snapshot.val();
+  if (!data || !data.message) return;
+
+  // Create popup
+  const popup = document.createElement("div");
+  popup.innerText = "📢 " + data.message;
+  Object.assign(popup.style, {
+    position: "fixed",
+    top: "20px",
+    right: "20px",
+    background: "#fff3cd",
+    border: "1px solid #ffecb5",
+    padding: "12px 18px",
+    borderRadius: "8px",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+    zIndex: 9999,
+    fontFamily: "Arial, sans-serif"
+  });
+  document.body.appendChild(popup);
+
+  // Auto-remove after 5 seconds
+  setTimeout(() => popup.remove(), 5000);
+});
+</script>
+
 </body>
 </html>
