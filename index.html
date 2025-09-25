@@ -94,7 +94,7 @@ button:hover,a:hover { background:#fff; color:#000; }
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 import { getDatabase, ref, onChildAdded } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
 
-// --- Firebase config (same as admin panel) ---
+// --- Firebase config ---
 const firebaseConfig = {
   apiKey: "AIzaSyC0jml1JcAoJziIB5iA-Ur7H3XpJdGhU44",
   authDomain: "fuckreii.firebaseapp.com",
@@ -110,35 +110,63 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+// --- Create a container for notifications ---
+let container = document.getElementById("announcement-container");
+if (!container) {
+  container = document.createElement("div");
+  container.id = "announcement-container";
+  Object.assign(container.style, {
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    display: "flex",
+    flexDirection: "column-reverse",
+    alignItems: "center",
+    gap: "10px",
+    pointerEvents: "none",
+    zIndex: 9999
+  });
+  document.body.appendChild(container);
+}
+
 // --- Listen for new announcements ---
 const annRef = ref(db, "announcements");
 
-// onChildAdded triggers for every new announcement
 onChildAdded(annRef, (snapshot) => {
   const data = snapshot.val();
   if (!data || !data.message) return;
 
-  // Create popup
   const popup = document.createElement("div");
   popup.innerText = "📢 " + data.message;
+  
   Object.assign(popup.style, {
-    position: "fixed",
-    top: "20px",
-    right: "20px",
-    background: "#fff3cd",
-    border: "1px solid #ffecb5",
-    padding: "12px 18px",
-    borderRadius: "8px",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-    zIndex: 9999,
-    fontFamily: "Arial, sans-serif"
+    color: "#fff",
+    fontSize: "20px",
+    fontFamily: "Arial, sans-serif",
+    textAlign: "center",
+    opacity: 0,
+    transform: "translateY(20px)",
+    transition: "opacity 0.5s ease, transform 0.5s ease"
   });
-  document.body.appendChild(popup);
 
-  // Auto-remove after 5 seconds
-  setTimeout(() => popup.remove(), 5000);
+  container.appendChild(popup);
+
+  // Animate in
+  requestAnimationFrame(() => {
+    popup.style.opacity = 1;
+    popup.style.transform = "translateY(0)";
+  });
+
+  // Animate out after 4 seconds
+  setTimeout(() => {
+    popup.style.opacity = 0;
+    popup.style.transform = "translateY(-20px)";
+    setTimeout(() => popup.remove(), 500);
+  }, 4000);
 });
 </script>
+
 
 </body>
 </html>
